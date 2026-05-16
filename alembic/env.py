@@ -6,6 +6,7 @@ from alembic import context
 
 from app.config.settings import settings
 from app.infrastructure.database.base import Base
+import app.infrastructure.database.models  # registers all ORM models with Base.metadata
 
 config = context.config
 
