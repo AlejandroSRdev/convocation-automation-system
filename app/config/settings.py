@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     APP_NAME: str = "convocation-automation-system"
     APP_ENV: str = "development"
     APP_HOST: str = "0.0.0.0"
-    APP_PORT: int = 8000
+    APP_PORT: int = 8080
     DATABASE_URL: str
     OPENAI_API_KEY: str
     WHATSAPP_API_KEY: str
