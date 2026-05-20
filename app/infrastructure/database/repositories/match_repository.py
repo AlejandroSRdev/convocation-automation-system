@@ -24,3 +24,19 @@ class SQLMatchRepository:
             location=model.location,
             competition_type=model.competition_type,
         )
+
+    def get_all(self) -> list[Match]:
+        models = self._session.query(MatchModel).all()
+        return [
+            Match(
+                id=model.id,
+                home_team=model.home_team,
+                away_team=model.away_team,
+                matchday=model.matchday,
+                match_date=model.match_date,
+                match_time=model.match_time,
+                location=model.location,
+                competition_type=model.competition_type,
+            )
+            for model in models
+        ]

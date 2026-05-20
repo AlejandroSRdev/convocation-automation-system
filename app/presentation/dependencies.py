@@ -7,6 +7,7 @@ from app.infrastructure.database.repositories.player_repository import SQLPlayer
 from app.infrastructure.database.repositories.staff_repository import SQLStaffRepository
 from app.application.rendering.convocation_renderer import ConvocationRenderer
 from app.application.use_cases.generate_convocation import GenerateConvocationUseCase
+from app.application.use_cases.get_matches import GetMatchesUseCase
 
 
 def get_db():
@@ -25,4 +26,12 @@ def get_generate_convocation_use_case(
         player_repository=SQLPlayerRepository(db),
         staff_repository=SQLStaffRepository(db),
         renderer=ConvocationRenderer(),
+    )
+
+
+def get_get_matches_use_case(
+    db: Session = Depends(get_db),
+) -> GetMatchesUseCase:
+    return GetMatchesUseCase(
+        match_repository=SQLMatchRepository(db),
     )
