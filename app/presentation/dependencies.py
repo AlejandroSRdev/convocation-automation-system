@@ -1,6 +1,8 @@
 from fastapi import Depends
 from sqlalchemy.orm import Session
 
+from app.config.settings import settings
+from app.infrastructure.ai.openai_adapter import OpenAIAdapter
 from app.infrastructure.database.session import SessionLocal
 from app.infrastructure.database.repositories.match_repository import SQLMatchRepository
 from app.infrastructure.database.repositories.player_repository import SQLPlayerRepository
@@ -8,6 +10,7 @@ from app.infrastructure.database.repositories.staff_repository import SQLStaffRe
 from app.application.rendering.convocation_renderer import ConvocationRenderer
 from app.application.use_cases.generate_convocation import GenerateConvocationUseCase
 from app.application.use_cases.get_matches import GetMatchesUseCase
+from app.application.use_cases.refine_convocation import RefineConvocationUseCase
 
 
 def get_db():
@@ -35,3 +38,8 @@ def get_get_matches_use_case(
     return GetMatchesUseCase(
         match_repository=SQLMatchRepository(db),
     )
+
+
+def get_refine_convocation_use_case() -> RefineConvocationUseCase:
+    adapter = OpenAIAdapter(api_key=settings.OPENAI_API_KEY)
+    return RefineConvocationUseCase(provider=adapter)

@@ -1,13 +1,10 @@
 from fastapi import APIRouter, Depends
 
 from app.application.use_cases.get_matches import GetMatchesUseCase
+from app.presentation.dependencies import get_get_matches_use_case
 from app.presentation.schemas.match import MatchResponse
 
 router = APIRouter(prefix="/matches", tags=["matches"])
-
-
-def get_get_matches_use_case() -> GetMatchesUseCase:
-    raise NotImplementedError("Dependency not wired")
 
 
 @router.get("/", response_model=list[MatchResponse])

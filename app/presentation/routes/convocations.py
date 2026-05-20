@@ -9,7 +9,7 @@ from app.application.use_cases.generate_convocation import (
     InvitedPlayerInput as InvitedPlayerCommandInput,
 )
 from app.domain.exceptions import MatchNotFoundError
-from app.presentation.dependencies import get_generate_convocation_use_case
+from app.presentation.dependencies import get_generate_convocation_use_case, get_refine_convocation_use_case
 from app.presentation.schemas.convocation import (
     RefineConvocationRequest,
     RefineConvocationResponse,
@@ -21,10 +21,6 @@ from app.presentation.schemas.convocation import (
 )
 
 router = APIRouter(prefix="/convocations", tags=["convocations"])
-
-
-def get_refine_convocation_use_case() -> RefineConvocationUseCase:
-    raise NotImplementedError("Dependency not wired")
 
 
 @router.post("/refine", response_model=RefineConvocationResponse)
