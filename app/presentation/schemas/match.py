@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class MatchResponse(BaseModel):
-    id: uuid.UUID
+    id: int
     home_team: str
     away_team: str
     matchday: int

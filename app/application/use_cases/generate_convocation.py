@@ -28,7 +28,7 @@ class InvitedPlayerInput:
 
 @dataclass
 class GenerateConvocationCommand:
-    match_id: uuid.UUID
+    match_id: int
     convocation_time: str
     selected_staff_ids: list[uuid.UUID] = field(default_factory=list)
     player_innings: dict[uuid.UUID, str] = field(default_factory=dict)

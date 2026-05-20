@@ -20,7 +20,7 @@ class InvitedPlayerInput(BaseModel):
 
 
 class GenerateConvocationRequest(BaseModel):
-    match_id: uuid.UUID
+    match_id: int
     convocation_time: str
     selected_staff_ids: list[uuid.UUID] = []
     player_innings: dict[str, str] = {}

@@ -1,7 +1,6 @@
 import datetime
-import uuid
 
-from sqlalchemy import UUID, Date, Integer, String, Time
+from sqlalchemy import Date, Integer, String, Time
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.infrastructure.database.base import Base
@@ -10,7 +9,7 @@ from app.infrastructure.database.base import Base
 class MatchModel(Base):
     __tablename__ = "matches"
 
-    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False)
     home_team: Mapped[str] = mapped_column(String, nullable=False)
     away_team: Mapped[str] = mapped_column(String, nullable=False)
     matchday: Mapped[int] = mapped_column(Integer, nullable=False)

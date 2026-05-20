@@ -1,5 +1,3 @@
-import uuid
-
 from sqlalchemy.orm import Session
 
 from app.domain.entities.match import Match
@@ -10,7 +8,7 @@ class SQLMatchRepository:
     def __init__(self, session: Session) -> None:
         self._session = session
 
-    def get_by_id(self, match_id: uuid.UUID) -> Match | None:
+    def get_by_id(self, match_id: int) -> Match | None:
         model = self._session.get(MatchModel, match_id)
         if model is None:
             return None
