@@ -12,6 +12,7 @@ class SQLPlayerRepository:
         models = (
             self._session.query(PlayerModel)
             .filter(PlayerModel.active == True)
+            .order_by(PlayerModel.number.asc().nulls_last())
             .all()
         )
         return [

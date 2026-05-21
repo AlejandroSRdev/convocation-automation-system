@@ -10,6 +10,8 @@ from app.infrastructure.database.repositories.staff_repository import SQLStaffRe
 from app.application.rendering.convocation_renderer import ConvocationRenderer
 from app.application.use_cases.generate_convocation import GenerateConvocationUseCase
 from app.application.use_cases.get_matches import GetMatchesUseCase
+from app.application.use_cases.get_players import GetPlayersUseCase
+from app.application.use_cases.get_staff_members import GetStaffMembersUseCase
 from app.application.use_cases.refine_convocation import RefineConvocationUseCase
 
 
@@ -43,3 +45,19 @@ def get_get_matches_use_case(
 def get_refine_convocation_use_case() -> RefineConvocationUseCase:
     adapter = OpenAIAdapter(api_key=settings.OPENAI_API_KEY)
     return RefineConvocationUseCase(provider=adapter)
+
+
+def get_get_players_use_case(
+    db: Session = Depends(get_db),
+) -> GetPlayersUseCase:
+    return GetPlayersUseCase(
+        player_repository=SQLPlayerRepository(db),
+    )
+
+
+def get_get_staff_members_use_case(
+    db: Session = Depends(get_db),
+) -> GetStaffMembersUseCase:
+    return GetStaffMembersUseCase(
+        staff_repository=SQLStaffRepository(db),
+    )

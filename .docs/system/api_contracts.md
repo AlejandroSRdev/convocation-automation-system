@@ -325,3 +325,126 @@ After the AI responds, the backend validates that every string in `critical_frag
 This means `was_refined: false` is not an error — it is the designed safe fallback. The frontend can use either `refined_message` unconditionally (it is always a valid, usable message).
 
 **Refinement is purely stylistic.** Tone, phrasing, and layout may change. Operational data — teams, players, times, locations, URLs — may not.
+
+---
+
+## 4. GET /players
+
+### Purpose
+
+Returns all active players. Used by the frontend to render the selectable player list, assign innings, and construct `excluded_player_ids` and `player_innings` before calling `/convocations/generate`.
+
+### Request
+
+```
+GET /players
+```
+
+No headers, no body required.
+
+### Response
+
+**200 OK**
+
+```json
+[
+  {
+    "id": 12,
+    "name": "Miquel Valls",
+    "number": 7,
+    "active": true
+  }
+]
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | `int` | Primary key. Use as key in `player_innings` and in `excluded_player_ids`. |
+| `name` | `string` | Player full name. |
+| `number` | `int \| null` | Jersey number. `null` if not assigned. |
+| `active` | `bool` | Always `true` — endpoint filters to active players only. |
+
+**Empty database — 200 OK**
+
+```json
+[]
+```
+
+### Validation Rules
+
+No input. No validation.
+
+### Failure Cases
+
+| Scenario | Status | Detail |
+|---|---|---|
+| DB unreachable | `500` | SQLAlchemy session error. Check `DATABASE_URL` in `.env`. |
+
+### Operational Notes
+
+- Only active players are returned. Inactive players are excluded at the DB level.
+- Results are ordered ascending by jersey `number`. Players with `null` number appear last.
+- `id` is always an integer.
+- `number` may be `null` for players without an assigned jersey number.
+- Use `id` (not `number`) as the key when building `player_innings` and `excluded_player_ids` for `/convocations/generate`.
+
+---
+
+## 5. GET /staff-members
+
+### Purpose
+
+Returns all active technical staff members. Used by the frontend to render the selectable staff list and construct `selected_staff_ids` before calling `/convocations/generate`.
+
+### Request
+
+```
+GET /staff-members
+```
+
+No headers, no body required.
+
+### Response
+
+**200 OK**
+
+```json
+[
+  {
+    "id": 3,
+    "name": "Joan Costa",
+    "role": "Manager",
+    "active": true
+  }
+]
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | `int` | Primary key. Use as value in `selected_staff_ids`. |
+| `name` | `string` | Staff member full name. |
+| `role` | `string` | Operational role (e.g. Manager, Coach, Pitching Coach). |
+| `active` | `bool` | Always `true` — endpoint filters to active staff only. |
+
+**Empty database — 200 OK**
+
+```json
+[]
+```
+
+### Validation Rules
+
+No input. No validation.
+
+### Failure Cases
+
+| Scenario | Status | Detail |
+|---|---|---|
+| DB unreachable | `500` | SQLAlchemy session error. Check `DATABASE_URL` in `.env`. |
+
+### Operational Notes
+
+- Only active staff members are returned. Inactive staff are excluded at the DB level.
+- Results are ordered by `id` ascending — stable, deterministic, insertion-order-equivalent.
+- `id` is always an integer.
+- Pass selected `id` values as the `selected_staff_ids` array in `/convocations/generate`. Order in that array determines render order in the convocation message.
