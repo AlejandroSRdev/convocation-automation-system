@@ -1,5 +1,3 @@
-import uuid
-
 from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.application.use_cases.refine_convocation import RefineConvocationUseCase, RefineConvocationResult
@@ -52,7 +50,7 @@ def generate_convocation(
         match_id=request.match_id,
         convocation_time=request.convocation_time,
         selected_staff_ids=request.selected_staff_ids,
-        player_innings={uuid.UUID(k): v for k, v in request.player_innings.items()},
+        player_innings={int(k): v for k, v in request.player_innings.items()},
         excluded_player_ids=request.excluded_player_ids,
         invited_players=[
             InvitedPlayerCommandInput(name=p.name, number=p.number)

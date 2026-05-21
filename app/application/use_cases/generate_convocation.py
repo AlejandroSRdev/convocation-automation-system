@@ -1,4 +1,3 @@
-import uuid
 import datetime
 import logging
 from dataclasses import dataclass, field
@@ -30,9 +29,9 @@ class InvitedPlayerInput:
 class GenerateConvocationCommand:
     match_id: int
     convocation_time: str
-    selected_staff_ids: list[uuid.UUID] = field(default_factory=list)
-    player_innings: dict[uuid.UUID, str] = field(default_factory=dict)
-    excluded_player_ids: list[uuid.UUID] = field(default_factory=list)
+    selected_staff_ids: list[int] = field(default_factory=list)
+    player_innings: dict[int, str] = field(default_factory=dict)
+    excluded_player_ids: list[int] = field(default_factory=list)
     invited_players: list[InvitedPlayerInput] = field(default_factory=list)
     manual_notes: list[str] = field(default_factory=list)
 

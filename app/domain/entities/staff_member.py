@@ -1,10 +1,9 @@
-import uuid
 from dataclasses import dataclass
 
 
 @dataclass
 class StaffMember:
-    id: uuid.UUID
+    id: int
     name: str
     role: str
     active: bool

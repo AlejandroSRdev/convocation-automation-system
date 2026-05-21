@@ -1,5 +1,3 @@
-import uuid
-
 from sqlalchemy.orm import Session
 
 from app.domain.entities.staff_member import StaffMember
@@ -10,7 +8,7 @@ class SQLStaffRepository:
     def __init__(self, session: Session) -> None:
         self._session = session
 
-    def get_active_by_ids(self, ids: list[uuid.UUID]) -> list[StaffMember]:
+    def get_active_by_ids(self, ids: list[int]) -> list[StaffMember]:
         if not ids:
             return []
         models = (

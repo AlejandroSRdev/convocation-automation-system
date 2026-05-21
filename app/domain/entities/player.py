@@ -1,10 +1,9 @@
-import uuid
 from dataclasses import dataclass
 
 
 @dataclass
 class Player:
-    id: uuid.UUID
+    id: int
     number: int | None
     name: str
     category_badge: str | None

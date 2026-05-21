@@ -1,5 +1,3 @@
-import uuid
-
 from pydantic import BaseModel
 
 
@@ -22,9 +20,9 @@ class InvitedPlayerInput(BaseModel):
 class GenerateConvocationRequest(BaseModel):
     match_id: int
     convocation_time: str
-    selected_staff_ids: list[uuid.UUID] = []
+    selected_staff_ids: list[int] = []
     player_innings: dict[str, str] = {}
-    excluded_player_ids: list[uuid.UUID] = []
+    excluded_player_ids: list[int] = []
     invited_players: list[InvitedPlayerInput] = []
     manual_notes: list[str] = []
 
