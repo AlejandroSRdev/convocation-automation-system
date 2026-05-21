@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convocatories — CB Panteres Vallès</title>
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+
+  <header>
+    <h1>CB Panteres Vallès</h1>
+    <p class="subtitle">Sistema de convocatòries</p>
+  </header>
+
+  <main>
+
+    <!-- INTRO -->
+    <section id="intro-section">
+      <p>
+        Sistema d'automatització de convocatòries per a entrenadors i staff tècnic.
+        Permet seleccionar la informació operativa del pròxim partit,
+        generar automàticament el missatge de convocatòria,
+        refinar-lo opcionalment amb IA,
+        i copiar el resultat final per enviar-lo manualment per WhatsApp.
+      </p>
+    </section>
+
+    <!-- STARTUP ERROR -->
+    <div id="startup-error" class="error-banner hidden"></div>
+
+    <!-- FORM -->
+    <section id="form-section">
+
+      <!-- MATCH -->
+      <div class="form-group">
+        <label for="match-select">Partit</label>
+        <select id="match-select"></select>
+        <div id="match-error" class="field-error hidden"></div>
+      </div>
+
+      <!-- CONVOCATION TIME -->
+      <div class="form-group">
+        <label for="convocation-time">Hora de convocatòria</label>
+        <input type="time" id="convocation-time" />
+        <div id="time-error" class="field-error hidden"></div>
+      </div>
+
+      <!-- STAFF -->
+      <div class="form-group">
+        <label>Staff tècnic</label>
+        <div id="staff-list"></div>
+        <div id="staff-error" class="field-error hidden"></div>
+      </div>
+
+      <!-- PLAYERS -->
+      <div class="form-group">
+        <label>Jugadors convocats</label>
+        <table id="player-table">
+          <thead>
+            <tr>
+              <th>Incloure</th>
+              <th>Jugador</th>
+              <th>Innings</th>
+            </tr>
+          </thead>
+          <tbody id="player-tbody"></tbody>
+        </table>
+        <div id="players-error" class="field-error hidden"></div>
+      </div>
+
+      <!-- INVITED PLAYERS -->
+      <div class="form-group">
+        <label>Jugadors convidats</label>
+        <div id="invited-list"></div>
+        <button type="button" id="add-invited-btn">+ Afegir convidat</button>
+        <div id="invited-error" class="field-error hidden"></div>
+      </div>
+
+      <!-- MANUAL NOTES -->
+      <div class="form-group">
+        <label for="manual-notes">Notes manuals</label>
+        <textarea id="manual-notes" rows="4" placeholder="Una nota per línia..."></textarea>
+      </div>
+
+      <!-- GENERATE BUTTON -->
+      <div class="form-group">
+        <button type="button" id="generate-btn">Generar convocatòria</button>
+        <div id="generate-error" class="field-error hidden"></div>
+      </div>
+
+    </section>
+
+    <!-- GENERATED MESSAGE OUTPUT -->
+    <section id="output-section" class="hidden">
+      <h2>Missatge generat</h2>
+      <textarea id="generated-message" rows="20" readonly></textarea>
+
+      <!-- REFINE -->
+      <div class="form-group">
+        <label for="refine-style">Refinar amb IA (opcional)</label>
+        <input
+          type="text"
+          id="refine-style"
+          placeholder="p.ex. fes-ho més curt i energètic"
+        />
+        <button type="button" id="refine-btn">Refinar amb IA</button>
+        <div id="refine-error" class="field-error hidden"></div>
+      </div>
+    </section>
+
+    <!-- REFINED MESSAGE OUTPUT -->
+    <section id="refined-section" class="hidden">
+      <h2>Missatge final</h2>
+      <textarea id="refined-message" rows="20" readonly></textarea>
+      <button type="button" id="copy-btn">Copiar missatge</button>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>CB Panteres Vallès · Sistema intern · V1</p>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
