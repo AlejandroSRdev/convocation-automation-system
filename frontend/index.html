@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convocatories — CB Panteres Vallès</title>
+  <title>Convocatorias — CB Panteres Vallès</title>
   <link rel="stylesheet" href="/src/styles/main.css" />
 </head>
 <body>
 
   <header>
     <h1>CB Panteres Vallès</h1>
-    <p class="subtitle">Sistema de convocatòries</p>
+    <p class="subtitle">Sistema de convocatorias</p>
   </header>
 
   <main>
@@ -18,11 +18,11 @@
     <!-- INTRO -->
     <section id="intro-section">
       <p>
-        Sistema d'automatització de convocatòries per a entrenadors i staff tècnic.
-        Permet seleccionar la informació operativa del pròxim partit,
-        generar automàticament el missatge de convocatòria,
-        refinar-lo opcionalment amb IA,
-        i copiar el resultat final per enviar-lo manualment per WhatsApp.
+        Sistema de automatización de convocatorias para entrenadores y staff técnico.
+        Permite seleccionar la información operativa del próximo partido,
+        generar automáticamente el mensaje de convocatoria,
+        refinarlo opcionalmente con IA,
+        y copiar el resultado final para enviarlo manualmente por WhatsApp.
       </p>
     </section>
 
@@ -34,32 +34,32 @@
 
       <!-- MATCH -->
       <div class="form-group">
-        <label for="match-select">Partit</label>
+        <label for="match-select">Partido</label>
         <select id="match-select"></select>
         <div id="match-error" class="field-error hidden"></div>
       </div>
 
       <!-- CONVOCATION TIME -->
       <div class="form-group">
-        <label for="convocation-time">Hora de convocatòria</label>
+        <label for="convocation-time">Hora de convocatoria</label>
         <input type="time" id="convocation-time" />
         <div id="time-error" class="field-error hidden"></div>
       </div>
 
       <!-- STAFF -->
       <div class="form-group">
-        <label>Staff tècnic</label>
+        <label>Staff técnico</label>
         <div id="staff-list"></div>
         <div id="staff-error" class="field-error hidden"></div>
       </div>
 
       <!-- PLAYERS -->
       <div class="form-group">
-        <label>Jugadors convocats</label>
+        <label>Jugadores convocados</label>
         <table id="player-table">
           <thead>
             <tr>
-              <th>Incloure</th>
+              <th>Incluir</th>
               <th>Jugador</th>
               <th>Innings</th>
             </tr>
@@ -71,21 +71,21 @@
 
       <!-- INVITED PLAYERS -->
       <div class="form-group">
-        <label>Jugadors convidats</label>
+        <label>Jugadores invitados</label>
         <div id="invited-list"></div>
-        <button type="button" id="add-invited-btn">+ Afegir convidat</button>
+        <button type="button" id="add-invited-btn">+ Agregar invitado</button>
         <div id="invited-error" class="field-error hidden"></div>
       </div>
 
       <!-- MANUAL NOTES -->
       <div class="form-group">
-        <label for="manual-notes">Notes manuals</label>
-        <textarea id="manual-notes" rows="4" placeholder="Una nota per línia..."></textarea>
+        <label for="manual-notes">Notas manuales</label>
+        <textarea id="manual-notes" rows="4" placeholder="Una nota por línea..."></textarea>
       </div>
 
       <!-- GENERATE BUTTON -->
       <div class="form-group">
-        <button type="button" id="generate-btn">Generar convocatòria</button>
+        <button type="button" id="generate-btn">Generar convocatoria</button>
         <div id="generate-error" class="field-error hidden"></div>
       </div>
 
@@ -93,33 +93,33 @@
 
     <!-- GENERATED MESSAGE OUTPUT -->
     <section id="output-section" class="hidden">
-      <h2>Missatge generat</h2>
+      <h2>Mensaje generado</h2>
       <textarea id="generated-message" rows="20" readonly></textarea>
 
       <!-- REFINE -->
       <div class="form-group">
-        <label for="refine-style">Refinar amb IA (opcional)</label>
+        <label for="refine-style">Refinar con IA (opcional)</label>
         <input
           type="text"
           id="refine-style"
-          placeholder="p.ex. fes-ho més curt i energètic"
+          placeholder="p.ej. hazlo más corto y enérgico"
         />
-        <button type="button" id="refine-btn">Refinar amb IA</button>
+        <button type="button" id="refine-btn">Refinar con IA</button>
         <div id="refine-error" class="field-error hidden"></div>
       </div>
     </section>
 
     <!-- REFINED MESSAGE OUTPUT -->
     <section id="refined-section" class="hidden">
-      <h2>Missatge final</h2>
+      <h2>Mensaje final</h2>
       <textarea id="refined-message" rows="20" readonly></textarea>
-      <button type="button" id="copy-btn">Copiar missatge</button>
+      <button type="button" id="copy-btn">Copiar mensaje</button>
     </section>
 
   </main>
 
   <footer>
-    <p>CB Panteres Vallès · Sistema intern · V1</p>
+    <p>CB Panteres Vallès · Sistema interno · V1</p>
   </footer>
 
   <script type="module" src="/src/main.js"></script>

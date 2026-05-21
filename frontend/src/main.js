@@ -17,7 +17,7 @@ async function initApp() {
     renderPlayerTable(state.players)
   } catch (error) {
     const el = document.getElementById('startup-error')
-    el.textContent = 'Error loading data from backend. Check connection and reload.'
+    el.textContent = 'Error al cargar datos del backend. Verifica la conexión y recarga la página.'
     el.classList.remove('hidden')
   }
 }
@@ -27,13 +27,13 @@ async function handleGenerate() {
 
   const matchIdRaw = parseInt(document.getElementById('match-select').value)
   if (isNaN(matchIdRaw) || matchIdRaw === 0) {
-    renderError('generate', 'Selecciona un partit.')
+    renderError('generate', 'Selecciona un partido.')
     return
   }
 
   const convocationTime = document.getElementById('convocation-time').value
   if (convocationTime === '') {
-    renderError('generate', "Introdueix l'hora de convocatòria.")
+    renderError('generate', 'Introduce la hora de convocatoria.')
     return
   }
 
@@ -86,7 +86,7 @@ async function handleGenerate() {
 
   const btn = document.getElementById('generate-btn')
   btn.disabled = true
-  btn.textContent = 'Generant...'
+  btn.textContent = 'Generando...'
 
   try {
     const data = await generateConvocation(payload)
@@ -95,10 +95,10 @@ async function handleGenerate() {
     state.refinedMessage = ''
     renderGeneratedMessage(state.generatedMessage)
   } catch (error) {
-    renderError('generate', 'Error al generar la convocatòria: ' + error.message)
+    renderError('generate', 'Error al generar la convocatoria: ' + error.message)
   } finally {
     btn.disabled = false
-    btn.textContent = 'Generar convocatòria'
+    btn.textContent = 'Generar convocatoria'
   }
 }
 
@@ -106,7 +106,7 @@ async function handleRefine() {
   clearError('refine')
 
   if (state.generatedMessage === '') {
-    renderError('refine', 'Genera el missatge primer.')
+    renderError('refine', 'Genera el mensaje primero.')
     return
   }
 
@@ -120,7 +120,7 @@ async function handleRefine() {
 
   const btn = document.getElementById('refine-btn')
   btn.disabled = true
-  btn.textContent = 'Refinant...'
+  btn.textContent = 'Refinando...'
 
   try {
     const data = await refineConvocation(payload)
@@ -130,7 +130,7 @@ async function handleRefine() {
     renderError('refine', 'Error al refinar: ' + error.message)
   } finally {
     btn.disabled = false
-    btn.textContent = 'Refinar amb IA'
+    btn.textContent = 'Refinar con IA'
   }
 }
 
@@ -140,11 +140,11 @@ async function handleCopy() {
 
   try {
     await navigator.clipboard.writeText(message)
-    btn.textContent = 'Copiat!'
-    setTimeout(() => { btn.textContent = 'Copiar missatge' }, 1500)
+    btn.textContent = '¡Copiado!'
+    setTimeout(() => { btn.textContent = 'Copiar mensaje' }, 1500)
   } catch {
-    btn.textContent = 'Error en copiar'
-    setTimeout(() => { btn.textContent = 'Copiar missatge' }, 1500)
+    btn.textContent = 'Error al copiar'
+    setTimeout(() => { btn.textContent = 'Copiar mensaje' }, 1500)
   }
 }
 
@@ -155,7 +155,7 @@ function addInvitedRow() {
   const nameInput = document.createElement('input')
   nameInput.type = 'text'
   nameInput.className = 'invited-name'
-  nameInput.placeholder = 'Nom del jugador'
+  nameInput.placeholder = 'Nombre del jugador'
 
   const numberInput = document.createElement('input')
   numberInput.type = 'text'

@@ -7,7 +7,7 @@ export function renderMatchSelector(matches) {
   if (matches.length === 0) {
     const option = document.createElement('option')
     option.disabled = true
-    option.textContent = 'No matches available'
+    option.textContent = 'No hay partidos disponibles.'
     select.appendChild(option)
     return
   }
@@ -31,7 +31,7 @@ export function renderStaffCheckboxes(staff) {
 
   if (staff.length === 0) {
     const p = document.createElement('p')
-    p.textContent = 'No staff members available.'
+    p.textContent = 'No hay miembros del staff disponibles.'
     container.appendChild(p)
     return
   }
@@ -59,7 +59,7 @@ export function renderPlayerTable(players) {
     const tr = document.createElement('tr')
     const td = document.createElement('td')
     td.colSpan = 3
-    td.textContent = 'No players available.'
+    td.textContent = 'No hay jugadores disponibles.'
     tr.appendChild(td)
     tbody.appendChild(tr)
     return
