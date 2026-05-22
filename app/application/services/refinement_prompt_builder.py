@@ -26,6 +26,20 @@ You MAY:
 - make the message feel more important and engaging
 - make the communication feel less robotic
 
+You MAY add short additional paragraphs or motivational lines BEFORE or AFTER existing sections if they improve the communication quality and emotional tone.
+
+You MAY:
+- add short team-oriented phrases
+- add match-focused motivational context
+- add small transitions between sections
+- reinforce team identity and importance of the match
+
+However:
+- the original operational blocks MUST remain present
+- no operational information may be removed
+- no critical information may be modified
+- the message must remain concise and WhatsApp-friendly
+
 You MUST:
 - Preserve every player name and number exactly as written
 - Preserve every URL exactly as written
