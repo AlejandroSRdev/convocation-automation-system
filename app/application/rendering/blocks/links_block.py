@@ -6,6 +6,10 @@ _CALENDAR_URL = "https://www.fcbs.cat/campionat/2026/b_sub14/res.php"
 _33INSPIRER = "https://33inspirer.com"
 
 
+def get_operational_urls() -> list[str]:
+    return [_STATS_URL, _ROSTER_URL, _CALENDAR_URL, _33INSPIRER]
+
+
 def render_links(dto: ConvocationRenderDTO) -> list[str]:
     return [
         "🔗 *Enlaces operacionales:*",

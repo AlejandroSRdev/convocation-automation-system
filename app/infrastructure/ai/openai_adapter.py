@@ -29,8 +29,6 @@ class OpenAIAdapter:
         model = "gpt-4o-mini"
         max_tokens = 800
 
-        logger.info("refinement.provider_call", extra={"model": model, "max_tokens": max_tokens})
-
         try:
             response = self._client.chat.completions.create(
                 model=model,

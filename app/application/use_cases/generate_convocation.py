@@ -12,6 +12,7 @@ from app.application.rendering.dtos import (
     InvitedPlayerRenderDTO,
     StaffRenderDTO,
 )
+from app.application.rendering.blocks.links_block import get_operational_urls
 from app.domain.exceptions import MatchNotFoundError
 
 logger = logging.getLogger(__name__)
@@ -142,12 +143,34 @@ class GenerateConvocationUseCase:
 
 
 def _extract_critical_fragments(dto: ConvocationRenderDTO) -> list[str]:
-    fragments = [
-        dto.location,
-        dto.home_team,
-        dto.away_team,
-    ]
-    fragments.extend(p.name for p in dto.players)
-    fragments.extend(p.name for p in dto.invited_players)
-    fragments.extend(s.name for s in dto.staff)
+    fragments = []
+
+    # Operational match facts — formatted exactly as rendered
+    fragments.append(dto.match_date.strftime("%d/%m/%Y"))
+    fragments.append(dto.match_time.strftime("%H:%M"))
+    fragments.append(dto.convocation_time)
+    fragments.append(dto.location)
+    fragments.append(dto.home_team)
+    fragments.append(dto.away_team)
+
+    # Player operational facts
+    for p in dto.players:
+        fragments.append(p.name)
+        if p.number is not None:
+            fragments.append(f"#{p.number}")
+        fragments.append(p.innings)
+
+    for p in dto.invited_players:
+        fragments.append(p.name)
+        if p.number is not None:
+            fragments.append(f"#{p.number}")
+        fragments.append(p.innings)
+
+    # Staff names
+    for s in dto.staff:
+        fragments.append(s.name)
+
+    # Operational URLs
+    fragments.extend(get_operational_urls())
+
     return [f for f in fragments if f]
